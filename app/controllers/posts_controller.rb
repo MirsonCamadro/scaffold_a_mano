@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
+    before_action :set_post, only: [:show, :edit, :update, :destroy]
 
     def index 
         @posts = Post.all
     end
 
     def show 
-        @post = Post.find(params[:id])
     end
 
     def new 
@@ -13,7 +13,6 @@ class PostsController < ApplicationController
     end
 
     def edit 
-        @post = Post.find(params[:id])
     end
 
     def create 
@@ -29,8 +28,6 @@ class PostsController < ApplicationController
     end
 
     def update 
-        @post = Post.find(params[:id])
-
         respond_to do |format|
             if @post.update(posts_params)
                 format.html { redirect_to post_path(@post), notice: "Se creo tu post"}
@@ -42,7 +39,6 @@ class PostsController < ApplicationController
     end
 
     def destroy 
-        @post = Post.find(params[:id])
         @post.destroy
 
         respond_to do |format|
@@ -52,6 +48,10 @@ class PostsController < ApplicationController
 
 
     private 
+
+    def set_post
+        @post = Post.find(params[:id])
+    end
 
     def posts_params 
         params.require(:post).permit(:title, :description, :image_url)
