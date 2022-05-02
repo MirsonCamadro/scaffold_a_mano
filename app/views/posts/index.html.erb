@@ -1,5 +1,24 @@
-<% @posts.each do |post| %>
-    <%= post.title%>
-    <%= post.description%>
-    <%= post.image_url%>
-<% end %>
+<p class="bg bg-warning"><%= alert%></p>
+
+<%= link_to "nuevo post", posts_new_path, class: "btn btn-info"%>
+
+
+<div class="row">
+
+    <% @posts.each do |post| %>
+            <div class="card col-4">
+                <%= image_tag post.image_url%>
+                <div class="card-body">
+                    <h5 class="card-title"><%= post.title%></h5>
+                    <p class="card-text"><%= post.description%></p>
+                    <p class="card-text">hace <%= time_ago_in_words(post.created_at)%></p>
+                    <%= link_to "show", post_path(post), class: "btn btn-info"%>
+                    <%= link_to "edit", post_edit_path(post), class: "btn btn-success"%>
+                    <%= button_to "destroy", post_path(post), method: :delete, data: {confirm: "seguro?"}, class: "btn btn-warning" %>
+                </div>
+            </div>
+    <% end %>
+
+</div> 
+<br>
+

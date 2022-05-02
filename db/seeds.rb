@@ -12,6 +12,6 @@ require 'faker'
     Post.create(
         title: Faker::Movies::Lebowski.actor,
         description: Faker::Movies::Lebowski.quote,
-        image_url: Faker::Avatar.image(size: "100x100")
+        image_url: Faker::Avatar.image
     )
 end
