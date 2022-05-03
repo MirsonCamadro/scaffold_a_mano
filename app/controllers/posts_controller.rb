@@ -2,7 +2,8 @@ class PostsController < ApplicationController
     before_action :set_post, only: [:show, :edit, :update, :destroy]
 
     def index 
-        @posts = Post.page(params[:page]).per(6)
+        @q = Post.ransack(params[:q])
+        @posts = @q.result(distinct: true).page(params[:page]).per(6)
     end
 
     def show 
