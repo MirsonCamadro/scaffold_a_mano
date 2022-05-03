@@ -1,0 +1,28 @@
+<%= form_with model: variable do |f| %>
+    <br>
+
+    <div>
+        <%= f.text_field :author, placeholder: "ingresa tu nombre" %>
+    </div>
+    
+    <div>
+        <%= f.select :status, Post.statuses.keys  %>
+    </div>
+
+    <div>
+        <%= f.text_field :title, placeholder: "ingresa titulo"%>    
+    </div>
+
+    <div>
+        <%= f.text_field :description, placeholder: "que estas pensando?"%>
+    </div>
+
+    <div>
+        <%= f.text_field :image_url, placeholder: "ingresa tu foto" %>
+    </div>
+
+
+    <div>
+        <%= f.submit "guardar comentario", class: "btn btn-success"%>
+    </div>
+<% end %>

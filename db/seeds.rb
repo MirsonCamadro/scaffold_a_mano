@@ -8,10 +8,14 @@
 
 require 'faker'
 
+people = ["Claudio", "Ale", "Mauricio"]
+
 10.times do |i|
     Post.create(
         title: Faker::Movies::Lebowski.actor,
         description: Faker::Movies::Lebowski.quote,
-        image_url: Faker::Avatar.image
+        image_url: Faker::Avatar.image,
+        author: people.sample,
+        status: rand(0..3)
     )
 end
