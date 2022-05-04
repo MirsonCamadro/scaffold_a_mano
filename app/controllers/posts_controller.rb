@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
     before_action :set_post, only: [:show, :edit, :update, :destroy]
+    http_basic_authenticate_with name: "mirson", password: "123123", except: :index
 
     def index 
         @q = Post.ransack(params[:q])
@@ -45,6 +46,11 @@ class PostsController < ApplicationController
         respond_to do |format|
             format.html { redirect_to root_path, alert: "tu post fue borrado" }
         end
+    end
+
+    def api_post
+        @posts = Post.all 
+        render json: @posts
     end
 
 

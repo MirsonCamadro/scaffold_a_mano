@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   patch  "posts/:id", to: "posts#update"
   delete "posts/:id", to: "posts#destroy"
 
+  get "api/v1/posts", to: "posts#api_post"
+
   root "posts#index"
   # Defines the root path route ("/")
   # root "articles#index"
